@@ -1,0 +1,21 @@
+{
+  "name": "vouched",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "anchor-build": "anchor build",
+    "anchor-localnet": "anchor localnet",
+    "anchor-test": "anchor test",
+    "anchor-deploy": "anchor deploy --provider.cluster devnet",
+    "test": "node_modules/.bin/jest --preset ts-jest"
+  },
+  "devDependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "@solana/web3.js": "^1.98.4",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.2.1",
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  }
+}
