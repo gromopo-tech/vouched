@@ -7,6 +7,7 @@
     "anchor-localnet": "anchor localnet",
     "anchor-test": "anchor test",
     "anchor-deploy": "anchor deploy --provider.cluster devnet",
+    "seed-devnet": "npx ts-node scripts/seed_devnet.ts",
     "test": "node_modules/.bin/jest --preset ts-jest"
   },
   "devDependencies": {
