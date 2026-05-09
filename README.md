@@ -69,3 +69,42 @@ If you generate a new keypair, update the program ID in `Anchor.toml`, `programs
 ```shell
 anchor keys sync
 ```
+
+#### Seed devnet with fixture reviews
+
+The `seed_devnet.ts` script submits ~8 varied reviews to devnet for use as eval fixtures. Each review is submitted from your local wallet as the reviewer, targeting a fixed merchant public key. Duplicate reviews (same reviewer + reviewee PDA) are skipped automatically.
+
+**1. Check your devnet balance and airdrop if needed:**
+
+```shell
+solana balance --url devnet
+solana airdrop 2 --url devnet
+```
+
+**2. Run the seed script:**
+
+```shell
+yarn seed-devnet
+```
+
+The script prints a JSON array of `{ pda, reviewer, reviewee, rating, comment, txSignature }` objects to stdout.
+
+**3. Verify a PDA on-chain:**
+
+Copy a `pda` address from the output, then:
+
+```shell
+solana account <pda_address> --url devnet
+```
+
+**4. Cache the seed data as an eval fixture for the chat service:**
+
+```shell
+yarn seed-devnet > ../chat/eval/onchain_seed_data.json
+```
+
+Or to capture both stdout (JSON) and stderr (progress logs):
+
+```shell
+yarn seed-devnet 2>&1 | tee /tmp/seed-output.txt
+```
