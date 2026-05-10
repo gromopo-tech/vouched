@@ -5,7 +5,7 @@
 Vouched is the on-chain review layer for [Gromopo](https://github.com/gromopo-tech/gromopo), a Solana-based restaurant ordering platform. After a customer completes a USDC payment through Gromopo, they are prompted to leave a review via this Anchor program. Reviews are purchase-verified — the reviewer must use the same wallet they paid with. Reviews are stored on-chain as PDA accounts (one per wallet per restaurant), then periodically indexed by an off-chain Python service ([gromopo-tech/chat](https://github.com/gromopo-tech/chat)) using `solders` + manual Borsh deserialization — deserializing account state and upserting into a Qdrant vector store so restaurant owners can query their review data through an AI-powered chat interface.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A([Customer\npost-order]) -->|addReview tx| B[Vouched\nAnchor program\nSolana devnet]
     B -->|getProgramAccounts\n+ manual Borsh decode| C[OnChainReviewSource\ngromopo-tech/chat]
     C -->|Vertex AI\ntext-embedding-004| D[(Qdrant\nvector store)]
